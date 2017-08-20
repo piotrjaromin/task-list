@@ -133,8 +133,10 @@ class Task extends React.Component {
                 Done
             </Checkbox>
             &nbsp;<a href="#" onClick={this.deleteTask(data._id)}>delete</a>
-            <FormControl type="text" onKeyPress={this.handleCreateSub(data)} onChange={this.handleTextChange(data)}/>
             {subTaskNodes}
+
+            <hr/>
+            <FormControl type="text" placeholder="Create sub task" onKeyPress={this.handleCreateSub(data)} onChange={this.handleTextChange(data)}/>
         </TreeView>
     }
 
