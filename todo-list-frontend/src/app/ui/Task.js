@@ -19,10 +19,12 @@ class Task extends React.Component {
         super(props);
         this.state = this.props.data;
         this.updateTask = this.updateTask.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleCreateSub = this.handleCreateSub.bind(this);
         this.handleCreate = this.handleCreate.bind(this);
         this.toNode = this.toNode.bind(this);
         this.id = this.id.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
+        this.submitEdit = this.submitEdit.bind(this);
         this.treeNodeId = 0;
     }
 
@@ -34,9 +36,7 @@ class Task extends React.Component {
         }
     }
 
-
-
-    handleKeyPress(data) {
+    handleCreateSub(data) {
         return target => {
             if(target.charCode==13){
                 console.log(data.tempTask);
@@ -74,22 +74,66 @@ class Task extends React.Component {
         };
     }
 
+    deleteTask( id ) {
+        return () => {
+            if ( this.state._id == id) {
+                return taskDal.deleteTask(id)
+                    .then( () => this.props.emitter.emit("updatedTasks"))
+                    .catch( err => {
+                        logger.error("Could not delete task. ", err);
+                        routingUtils.toMainWithError(this, "Could not delete task");
+                    });
+            }
+
+            this.removeSubTask(id, this.state);
+            this.updateTask();
+        }
+    }
+
+    removeSubTask(id, task) {
+        task.subTasks = task.subTasks.filter( t => t._id != id);
+        if ( task.subTasks.length > 0 ) {
+            task.subTasks.forEach( t => removeSubTask(id, t));
+        }
+    }
+
+
+    handleEdit(data) {
+        return (e) => {
+            e.preventDefault();
+            data.text = e.target.value;
+            this.setState(this.state);
+        }
+    }
+
+    submitEdit(target) {
+        if(target.charCode==13){
+            logger.debug("submit edit task");
+            this.updateTask();
+        }
+    }
+
     toNode(data) {
 
         const subTasks = (data.subTasks || []);
         subTasks.sort(utils.sortByDone);
+        data._id = data._id || this.id();
         const subTaskNodes = subTasks.map(this.toNode);
 
         const checked = data.done ? "checked" : "";
 
         const style = data.done ? {"textDecoration":"line-through"} : null;
-        const label = <span style={style}>{data.text}</span>
+        const label = (
+            <span style={style}> <FormControl type="text" value={data.text} onKeyPress={this.submitEdit} onChange={this.handleEdit(data)}/>
+            </span>
+        )
 
-        return <TreeView defaultCollapsed={false} nodeLabel={label} key={this.id()}>
-            <Checkbox checked={checked} onChange={this.doneHandler(data)}>
+        return <TreeView defaultCollapsed={false} nodeLabel={label} key={"tree_" + this.id()}>
+            <Checkbox checked={checked} onChange={this.doneHandler(data)} inline>
                 Done
             </Checkbox>
-            <FormControl type="text" onKeyPress={this.handleKeyPress(data)} onChange={this.handleTextChange(data)}/>
+            &nbsp;<a href="#" onClick={this.deleteTask(data._id)}>delete</a>
+            <FormControl type="text" onKeyPress={this.handleCreateSub(data)} onChange={this.handleTextChange(data)}/>
             {subTaskNodes}
         </TreeView>
     }
