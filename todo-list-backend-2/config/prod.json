@@ -1,0 +1,5 @@
+{
+    "mongodb" : {
+        "url" :"mongodb://db:27017/todo-list"
+    }
+}
