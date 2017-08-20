@@ -7,6 +7,10 @@ Frontend and backend are separated.
 - backend is written in nodejs and uses mongodb as backing database.
 - frontend is written in reactjs.
 
+requirements:
+- webpack
+- nodejs
+- docker and docker-compose (optional)
 
 Application can be run on local host by calling "npm start" in each directory(although NODE_ENV change is needed for frontend in webpack.config.js).
 
