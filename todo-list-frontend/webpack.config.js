@@ -8,7 +8,7 @@ const config = {
     devtool: "cheap-module-source-map",
     entry: {
         app: APP_DIR + '/app.js',
-        vendor: ["jquery", "bootstrap", "moment", "react", "react-dom", "react-router"]
+        vendor: ["jquery", "bootstrap", "react", "react-dom", "react-router"]
     },
     output: {
         path: BUILD_DIR,
