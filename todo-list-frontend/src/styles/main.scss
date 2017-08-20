@@ -1,0 +1,87 @@
+footer {
+  margin: 50px 0;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.description {
+  word-wrap: break-word;
+  margin-right: 1em;
+}
+
+.description-text {
+  font-size: 1.5rem !important;
+}
+
+.container {
+
+  & .jumbotron {
+    border-radius: 0;
+    padding: 5px;
+  }
+
+  & .well {
+    border-radius: 0;
+  }
+}
+
+.fixed-width-btn {
+  min-width: 10em;
+  max-width: 10em;
+}
+
+.margin-right-1em {
+  margin-right: 1em;
+}
+
+.text-error {
+  color: #b94a48;
+}
+
+.navbar-inverse {
+  background-color: #2d3e50;
+  border-color: #2d3e50;
+}
+
+.vertical-right {
+  border-right: 1px dashed #333;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #6FBEF3;
+}
+
+.navbar-inverse .navbar-text {
+  color: #6FBEF3;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #6FBEF3;
+}
+
+.jumbotron {
+  background-color: #1f8dd6;
+  color: white;
+}
+
+.em5-padding {
+  padding: 5em;
+}
+
+.em1-padding {
+  padding: 1em;
+}
+
+.center {
+  text-align: center;
+}
+
+.zero-margin {
+  margin: 0;
+}

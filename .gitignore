@@ -1,0 +1,5 @@
+./todo-list-backend/node_modules
+./todo-list-frontend/node_modules
+./todo-list-frontend/.vscode
+./todo-list-backend/.vscode
+./todo-list-backend/curls

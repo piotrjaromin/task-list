@@ -1,0 +1,21 @@
+db:
+  image: mongo
+  ports:
+    - "27017:27017"
+  command: "--smallfiles --logpath=/dev/null"
+
+backend:
+  build: ./todo-list-backend
+  volumes:
+    - .:/myapp
+  ports:
+    - "3000:3000"
+  links:
+    - db
+  environment:
+    NODE_ENV: "prod"
+
+front:
+  build: ./todo-list-frontend
+  ports:
+    - "80:80"

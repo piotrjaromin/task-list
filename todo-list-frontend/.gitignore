@@ -1,0 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+vendor.js
+node_modules
+src/dist/js
+src/dist/fonts
