@@ -5,7 +5,7 @@ db:
   command: "--smallfiles --logpath=/dev/null"
 
 backend:
-  build: ./todo-list-backend
+  build: ./todo-list-node
   volumes:
     - .:/myapp
   ports:
