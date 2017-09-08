@@ -3,8 +3,16 @@
 const axios = require('axios');
 const config = require('Config');
 
-var httpClient = axios.create({
-  baseURL: `${config.backendUrl}/tasks`,
+let backendUrl = config.backendUrl;
+//workaround when no backendurl is provided 
+//assume that backend is runing on the same host as frontend and on port 3000
+//help when someone uses docker-machine instead of native one
+if ( !backendUrl ) {
+    backendUrl = `${location.protocol}//${window.location.hostname}:3000`;
+}
+
+const httpClient = axios.create({
+  baseURL: `${backendUrl}/tasks`,
   timeout: 1000,
     auth: {
     username: config.basic.user,

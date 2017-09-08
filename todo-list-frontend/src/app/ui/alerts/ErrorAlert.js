@@ -3,6 +3,7 @@
 const React = require('react');
 const Alert = require('react-bootstrap').Alert;
 const Row = require('react-bootstrap').Row;
+const PropTypes = require('prop-types');
 
 class ErrorAlert extends React.Component {
 
@@ -19,5 +20,9 @@ class ErrorAlert extends React.Component {
         </Row>
     }
 }
+
+ErrorAlert.propTypes = {
+    msg: PropTypes.string
+};
 
 module.exports = ErrorAlert;

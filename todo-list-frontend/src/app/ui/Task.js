@@ -128,7 +128,7 @@ class Task extends React.Component {
             </span>
         )
 
-        return <TreeView defaultCollapsed={false} nodeLabel={label} key={"tree_" + this.id()}>
+        return <TreeView defaultCollapsed={false} nodeLabel={label}>
             <Checkbox checked={checked} onChange={this.doneHandler(data)} inline>
                 Done
             </Checkbox>

@@ -38,7 +38,7 @@ class CreateTask extends React.Component {
             });
         }
         
-        delete this.state.mainErrorMsg;
+        this.setState({mainErrorMsg: null});
 
         taskDal.createTask(this.state)
             .then( () => {

@@ -1,5 +1,4 @@
 {
-  "backendUrl" : "http://localhost:3000",
   "basic" : {
     "user" : "top",
     "pass" : "secret"
